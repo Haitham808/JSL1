@@ -1,7 +1,7 @@
 import common.Global
 
 @SuppressWarnings(["GroovyAssignabilityCheck", 'GroovyParameterNamingConvention', 'GroovyConditional', 'GroovyMethodWithMoreThanThreeNegations', 'GroovyOverlyLongMethod', 'GroovyOverlyComplexMethod'])
-def call() {
+def call(final Map<String, Object> params = [:]) {
 
      Global.set(this, params)
 
