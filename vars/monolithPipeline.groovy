@@ -1,4 +1,4 @@
-import haitham.com.au.common.Global
+import common.Global
 
 @SuppressWarnings(["GroovyAssignabilityCheck", 'GroovyParameterNamingConvention', 'GroovyConditional', 'GroovyMethodWithMoreThanThreeNegations', 'GroovyOverlyLongMethod', 'GroovyOverlyComplexMethod'])
 def call() {
