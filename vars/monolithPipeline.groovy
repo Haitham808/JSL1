@@ -30,7 +30,7 @@ def call(final Map<String, Object> params = [:]) {
             stage('Hello') {
                 steps {
                      script {
-                        cat /etc/hostname
+                        'cat /etc/hostname'
                      }
                 }
             }
