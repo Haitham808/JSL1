@@ -6,6 +6,8 @@ def call(final Map<String, Object> params = [:]) {
      Global.set(this, params)
 
     pipeline {
+
+        agent any
         
         // agent {
         //     kubernetes {
