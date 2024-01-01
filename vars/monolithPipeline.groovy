@@ -29,7 +29,10 @@ def call(final Map<String, Object> params = [:]) {
         stages {
             stage('Hello') {
                 steps {
-                     Global.script.sh('cat /etc/hostname')
+                    script{
+                        Global.script.sh('cat /etc/hostname')
+                    }
+                     
                 }
             }
         }
