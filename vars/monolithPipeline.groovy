@@ -14,8 +14,6 @@ def call(final Map<String, Object> params = [:]) {
                     yaml """
                     apiVersion: v1
                     kind: Pod
-                    metadata:
-                    name: nginx-echo-hello-world
                     spec:
                     containers:
                       - name: nginx
@@ -37,7 +35,7 @@ def call(final Map<String, Object> params = [:]) {
               }
           }
         stages {
-            stage('builf'){
+            stage('build'){
                 steps{
                     container('kaniko'){
                             script{
