@@ -14,22 +14,19 @@ def call(final Map<String, Object> params = [:]) {
                     yaml """
 apiVersion: v1
 kind: Pod
-metadata:
-  name: kaniko
 spec:
     containers:
     - name: kaniko
       image: gcr.io/kaniko-project/executor:debug  
-      args: ['sleep','3000']
       volumeMounts:
         - name: docker-config
           mountPath: /kaniko/.docker
     volumes:
     - name: docker-config
       secret:
-       secretName: kaniko-secret
-            - name: workspace
-              emptyDir: {}    
+        secretName: kaniko-secret
+    - name: workspace
+      emptyDir: {}    
                            """
               }
           }
