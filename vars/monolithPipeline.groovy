@@ -23,16 +23,10 @@ def call(final Map<String, Object> params = [:]) {
                         image: nginx:latest
                         command: ["/bin/sh"]
                         args: ["sleep","3600"]
-                      - name: kaniko 
-                        image: gcr.io/kaniko-project/executor:latest
+                           """
               }
           }
         stages {
-            stage('build image'){
-                Global.script.container('kaniko') {
-                    Global.script.sh('/kaniko/executor --context ./ --dockerfile=./Dockerfile --destination=')
-                }
-            }
             stage('Hello') {
                 steps {
                     script{
