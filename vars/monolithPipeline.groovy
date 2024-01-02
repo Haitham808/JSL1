@@ -15,22 +15,22 @@ def call(final Map<String, Object> params = [:]) {
                     apiVersion: v1
                     kind: Pod
                     spec:
-                    containers:
-                      - name: nginx
-                        image: nginx:latest
-                        command: ["/bin/sh"]
-                        args: ["sleep","3600"]
-                      - name: kaniko
-                        image: gcr.io/kaniko-project/executor:latest  
-                        volumeMounts:
-                          - name: docker-config
-                            mountPath: /kaniko/.docker
-                    volumes:
-                      - name: docker-config
-                        secret:
-                          secretName: kaniko-secret
-                      - name: workspace
-                        emptyDir: {}    
+                        containers:
+                        - name: nginx
+                            image: nginx:latest
+                            command: ["/bin/sh"]
+                            args: ["sleep","3600"]
+                        - name: kaniko
+                            image: gcr.io/kaniko-project/executor:latest  
+                            volumeMounts:
+                            - name: docker-config
+                                mountPath: /kaniko/.docker
+                        volumes:
+                        - name: docker-config
+                            secret:
+                            secretName: kaniko-secret
+                        - name: workspace
+                            emptyDir: {}    
                            """
               }
           }
