@@ -6,6 +6,10 @@ def call(final Map<String, Object> params = [:]) {
      Global.set(this, params)
 
     pipeline {
+
+        environment {
+        GOOGLE_CREDENTIALS = credentials('gcr')
+    }
         
         agent {
             kubernetes {
@@ -21,10 +25,25 @@ def call(final Map<String, Object> params = [:]) {
                         image: nginx:latest
                         command: ["/bin/sh"]
                         args: ["sleep","3600"]
+                      - name: kaniko
+                        image: gcr.io/kaniko-project/executor:latest  
+                    volumes:
+                      - name: docker-config
+                        secret:
+                          secretName: kaniko-secret
+                      - name: workspace
+                        emptyDir: {}    
                            """
               }
           }
         stages {
+            stage('builf'){
+                steps{
+                    script{
+                        Global.script.sh('/kaniko/executor --context ./ --dockerfile=./Dockerfile --destination=gcr.io/playground-s-11-c6a56f22/test:1212 ')
+                    }
+                }
+            }
             stage('Hello') {
                 steps {
                     echo 'Hello World'
