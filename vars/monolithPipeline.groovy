@@ -6,8 +6,6 @@ def call(final Map<String, Object> params = [:]) {
      Global.set(this, params)
 
     pipeline {
-
-        
         
         agent {
             kubernetes {
@@ -29,10 +27,7 @@ def call(final Map<String, Object> params = [:]) {
         stages {
             stage('Hello') {
                 steps {
-                    script{
-                        Global.script.sh('cat /etc/hostname')
-                    }
-                     
+                    echo 'Hello World'
                 }
             }
         }
