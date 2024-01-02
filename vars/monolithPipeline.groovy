@@ -39,10 +39,13 @@ def call(final Map<String, Object> params = [:]) {
         stages {
             stage('builf'){
                 steps{
-                    script{
-                        Global.script.sh('/kaniko/executor --context ./ --dockerfile=./Dockerfile --destination=gcr.io/playground-s-11-c6a56f22/test:1212 ')
-                        Global.script.sh('echo hii')
+                    container('kaniko'){
+                            script{
+                            Global.script.sh('/kaniko/executor --context ./ --dockerfile=./Dockerfile --destination=gcr.io/playground-s-11-c6a56f22/test:1212 ')
+                            Global.script.sh('echo hii')
+                        }
                     }
+                    
                 }
             }
             stage('Hello') {
