@@ -12,21 +12,24 @@ def call(final Map<String, Object> params = [:]) {
             kubernetes {
                     label "haitham-test"
                     yaml """
-                apiVersion: v1
-                kind: Pod
-                spec:
-                    containers:
-                      - name: kaniko
-                        image: gcr.io/kaniko-project/executor:latest  
-                        volumeMounts:
-                          - name: docker-config
-                            mountPath: /kaniko/.docker
-                    volumes:
-                      - name: docker-config
-                        secret:
-                          secretName: kaniko-secret
-                      - name: workspace
-                        emptyDir: {}    
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+spec:
+    containers:
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:debug  
+      args: ['sleep','3000']
+      volumeMounts:
+        - name: docker-config
+          mountPath: /kaniko/.docker
+    volumes:
+    - name: docker-config
+      secret:
+       secretName: kaniko-secret
+            - name: workspace
+              emptyDir: {}    
                            """
               }
           }
@@ -35,7 +38,7 @@ def call(final Map<String, Object> params = [:]) {
                 steps{
                     container('kaniko'){
                             script{
-                            Global.script.sh('/kaniko/executor --context ./ --dockerfile=./Dockerfile --destination=gcr.io/playground-s-11-c6a56f22/test:1212 ')
+                            // Global.script.sh('/kaniko/executor --context ./ --dockerfile=./Dockerfile --destination=gcr.io/playground-s-11-c6a56f22/test:1212 ')
                             Global.script.sh('echo hii')
                         }
                     }
