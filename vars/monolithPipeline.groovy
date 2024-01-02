@@ -30,8 +30,6 @@ def call(final Map<String, Object> params = [:]) {
                         volumeMounts:
                           - name: docker-config
                             mountPath: /kaniko/.docker
-                          - name: workspace  
-                            mountPath: $(WORKSPACE)
                     volumes:
                       - name: docker-config
                         secret:
