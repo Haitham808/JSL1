@@ -18,6 +18,14 @@ spec:
     containers:
     - name: nginx
       image: nginx
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:debug  
+      command:
+      - cat
+      tty: true
+      volumeMounts:
+        - name: docker-config
+          mountPath: /kaniko/.docker
     volumes:
     - name: docker-config
       secret:
@@ -30,7 +38,7 @@ spec:
         stages {
             stage('build'){
                 steps{
-                    container('nginx'){
+                    container('kaniko'){
                             script{
                             // Global.script.sh('/kaniko/executor --context ./ --dockerfile=./Dockerfile --destination=gcr.io/playground-s-11-c6a56f22/test:1212 ')
                             Global.script.sh('echo hii')
