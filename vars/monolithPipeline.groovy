@@ -18,10 +18,6 @@ spec:
     containers:
     - name: nginx
       image: nginx
-      command:
-      - sleep
-      args:
-      - 3600 
     volumes:
     - name: docker-config
       secret:
