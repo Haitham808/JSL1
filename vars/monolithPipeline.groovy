@@ -38,7 +38,7 @@ spec:
         stages {
             stage('build'){
                 steps{
-                    container('kaniko'){
+                    container(name:'kaniko' , shell: '/busybox/sh'){
                             script{
                              Global.script.sh('/kaniko/executor --context ./ --dockerfile=./Dockerfile --destination=us-central1-docker.pkg.dev/playground-s-11-334a3823/my-gcr/test:1212 ')
                             //Global.script.sh('echo hii')
